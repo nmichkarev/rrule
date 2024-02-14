@@ -2,9 +2,9 @@ import { isValidDate } from './dateutil'
 
 import IterResult, { IterArgs } from './iterresult'
 import CallbackIterResult from './callbackiterresult'
-import { Language } from './nlp/i18n'
+import { Language, LanguageTemplates } from './nlp/i18n'
 import { fromText, parseText, toText, isFullyConvertible } from './nlp/index'
-import { DateFormatter, GetText } from './nlp/totext'
+import { DateFormatter } from './nlp/totext'
 import {
   ParsedOptions,
   Options,
@@ -260,11 +260,10 @@ export class RRule implements QueryMethods {
    * to text.
    */
   toText(
-    gettext?: GetText,
-    language?: Language,
-    dateFormatter?: DateFormatter
+    dateFormatter?: DateFormatter,
+    languageTemplates?: LanguageTemplates,
   ) {
-    return toText(this, gettext, language, dateFormatter)
+    return toText(this, dateFormatter, languageTemplates)
   }
 
   isFullyConvertibleToText() {

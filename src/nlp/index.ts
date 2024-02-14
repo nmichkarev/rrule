@@ -1,8 +1,8 @@
-import ToText, { DateFormatter, GetText } from './totext'
+import ToText, { DateFormatter } from './totext'
 import parseText from './parsetext'
 import { RRule } from '../rrule'
 import { Frequency } from '../types'
-import ENGLISH, { Language } from './i18n'
+import ENGLISH, { Language, LanguageTemplates } from './i18n'
 
 /* !
  * rrule.js - Library for working with recurrence rules for calendar dates.
@@ -122,11 +122,10 @@ ToText.IMPLEMENTED[Frequency.YEARLY] = ['byweekno', 'byyearday'].concat(common)
 
 const toText = function (
   rrule: RRule,
-  gettext?: GetText,
-  language?: Language,
-  dateFormatter?: DateFormatter
+  dateFormatter?: DateFormatter,
+  languageTemplates?: LanguageTemplates,
 ) {
-  return new ToText(rrule, gettext, language, dateFormatter).toString()
+  return new ToText(rrule, dateFormatter, languageTemplates).toString()
 }
 
 const { isFullyConvertible } = ToText
